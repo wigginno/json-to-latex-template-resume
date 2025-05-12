@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Resume",
+  "type": "object",
+  "additionalProperties": false,
+
+  "properties": {
+    "name": { "type": "string" },
+
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "location": { "type": "string" },
+        "email":   { "type": "string", "format": "email" },
+        "github":  { "type": "string", "format": "uri" },
+        "linkedin":{ "type": "string", "format": "uri" }
+      },
+      "required": [ "location", "email", "github", "linkedin" ]
+    },
+
+    "education": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/educationEntry" }
+    },
+
+    "experience": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/experienceEntry" }
+    },
+
+    "projects": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/projectEntry" }
+    },
+
+    "technicalSkills": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "languages": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "frameworksAndLibraries": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "tools": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      },
+      "required": [ "languages", "frameworksAndLibraries", "tools" ]
+    },
+
+    "certifications": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/certificationEntry" }
+    }
+  },
+
+  "required": [
+    "name",
+    "contact",
+    "education",
+    "experience",
+    "projects",
+    "technicalSkills",
+    "certifications"
+  ],
+
+  "definitions": {
+    "educationEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "institution":     { "type": "string" },
+        "location":        { "type": "string" },
+        "degree":          { "type": "string" },
+        "graduationDate":  { "type": "string" },
+        "relevantCourses": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      },
+      "required": [
+        "institution",
+        "location",
+        "degree",
+        "graduationDate",
+        "relevantCourses"
+      ]
+    },
+
+    "experienceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "organization": { "type": "string" },
+        "location":     { "type": "string" },
+        "title":        { "type": "string" },
+        "dates":        { "type": "string" },
+        "achievements": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      },
+      "required": [
+        "organization",
+        "location",
+        "title",
+        "dates",
+        "achievements"
+      ]
+    },
+
+    "projectEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name":         { "type": "string" },
+        "url":          { "type": "string", "format": "uri" },
+        "technologies": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "details": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        }
+      },
+      "required": [ "name", "url", "technologies", "details" ]
+    },
+
+    "certificationEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "issuer": { "type": "string" },
+        "name":   { "type": "string" },
+        "date":   { "type": "string" }
+      },
+      "required": [ "issuer", "name", "date" ]
+    }
+  }
+}

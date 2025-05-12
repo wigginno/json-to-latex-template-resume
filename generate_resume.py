@@ -13,6 +13,7 @@ import re
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jsonschema import Draft4Validator, ValidationError
 
 
 def tex_escape(text: str) -> str:
@@ -54,6 +55,10 @@ def group_education(edu_list):
 
 def main(json_path: str, template_path: str, output_path: str):
     data = json.loads(Path(json_path).read_text())
+
+    with open("resume_schema.json", "r") as f:
+        schema = json.load(f)
+    Draft4Validator(schema).validate(data)
 
     # Pre‑compute grouped education
     data["schools"] = group_education(data["education"])
