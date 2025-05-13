@@ -18,6 +18,7 @@
 \usepackage{tabularx}
 \usepackage{url}
 \input{glyphtounicode}
+\usepackage[T1]{fontenc}
 \usepackage{charter}
 
 \pagestyle{fancy}
@@ -104,7 +105,7 @@
     \resumeSubheading
       { {{ school.institution|tex }} }{ {{ school.location|tex }} }
       {}{}
-    \vspace{-20pt}
+    \vspace{-17pt}
 {%   for deg in school.degrees %}
       \resumeSubSubheading{ {{ deg.degree|tex }} }{ {{ deg.graduationDate|tex }} }
       \resumeItemListStart
